@@ -1,0 +1,33 @@
+<p-button (click)="showDialog()" icon="pi pi-fw pi-eye"></p-button>
+<p-dialog
+  header="{{ user.name }}"
+  [(visible)]="visible"
+  styleClass="md:w-8 w-11"
+>
+  <p-accordion>
+    <p-accordionTab header="Información Personal">
+      <app-user-info [user]="user"></app-user-info>
+    </p-accordionTab>
+    <p-accordionTab header="Posteos">
+      <app-user-posts
+        [isAdmin]="isAdmin"
+        [users]="users"
+        [user]="user"
+      ></app-user-posts>
+    </p-accordionTab>
+    <p-accordionTab header="Albums">
+      <app-user-albums
+        [isAdmin]="isAdmin"
+        [users]="users"
+        [user]="user"
+      ></app-user-albums>
+    </p-accordionTab>
+    <p-accordionTab header="To-Dos">
+      <app-user-todos
+        [isAdmin]="isAdmin"
+        [users]="users"
+        [user]="user"
+      ></app-user-todos>
+    </p-accordionTab>
+  </p-accordion>
+</p-dialog>

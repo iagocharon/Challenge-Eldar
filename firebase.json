@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/challenge-eldar",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

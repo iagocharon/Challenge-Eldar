@@ -1,0 +1,29 @@
+<div class="button-wrapper flex justify-content-center">
+  <p-button
+    (click)="showDialog()"
+    icon="pi pi-fw pi-eye"
+    styleClass="p-button-sn"
+  ></p-button>
+  <p-dialog
+    styleClass="md:w-6 w-11"
+    header="{{ post.title }}"
+    [(visible)]="visible"
+  >
+    <p class="mb-2">{{ post.body }}</p>
+    <p class="text-right font-semibold">
+      <em>{{ author }}</em>
+    </p>
+    <h3 class="mt-8 mb-2">Comentarios</h3>
+    <ng-container *ngFor="let comment of comments">
+      <div class="mb-2">
+        <p>
+          <b>{{ comment.name }}</b> -
+          <em class="text-xs">{{ comment.email }}</em>
+        </p>
+        <p class="text-sm">{{ comment.body }}</p>
+      </div>
+      <p-divider></p-divider>
+    </ng-container>
+    <app-new-comment [postId]="post.id" [users]="users"></app-new-comment>
+  </p-dialog>
+</div>

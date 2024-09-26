@@ -1,0 +1,32 @@
+<div class="button-wrapper flex justify-content-center">
+  <p-button (click)="showDialog()" icon="pi pi-plus"></p-button>
+  <p-dialog header="Nuevo Álbum" [(visible)]="visible" styleClass="md:w-6 w-11">
+    <form
+      [formGroup]="albumForm"
+      (ngSubmit)="submitForm()"
+      class="p-fluid flex flex-column gap-2"
+    >
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-book"></i>
+        </span>
+        <input pInputText placeholder="Título" formControlName="title" />
+      </div>
+      <p-dropdown
+        appendTo="body"
+        [options]="users"
+        formControlName="user"
+        optionLabel="name"
+        placeholder="Usuario"
+      ></p-dropdown>
+      <div class="p-field submit">
+        <button
+          pButton
+          type="submit"
+          label="Crear Álbum"
+          [disabled]="albumForm.invalid"
+        ></button>
+      </div>
+    </form>
+  </p-dialog>
+</div>

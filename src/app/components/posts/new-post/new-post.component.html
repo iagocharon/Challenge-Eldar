@@ -1,0 +1,40 @@
+<p-button (click)="showDialog()" icon="pi pi-plus"></p-button>
+<p-dialog styleClass="md:w-6 w-11" header="Nuevo Posteo" [(visible)]="visible">
+  <form
+    [formGroup]="postForm"
+    (ngSubmit)="submitForm()"
+    class="p-fluid flex flex-column gap-2"
+  >
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-book"></i>
+      </span>
+      <input pInputText placeholder="Título" formControlName="title" />
+    </div>
+    <div class="p-inputgroup">
+      <textarea
+        id="float-input"
+        rows="5"
+        cols="30"
+        pInputTextarea
+        formControlName="body"
+        placeholder="Cuerpo del Posteo"
+      ></textarea>
+    </div>
+    <p-dropdown
+      appendTo="body"
+      [options]="users"
+      formControlName="user"
+      optionLabel="name"
+      placeholder="Usuario"
+    ></p-dropdown>
+    <div class="p-field submit">
+      <button
+        pButton
+        type="submit"
+        label="Crear Posteo"
+        [disabled]="postForm.invalid"
+      ></button>
+    </div>
+  </form>
+</p-dialog>

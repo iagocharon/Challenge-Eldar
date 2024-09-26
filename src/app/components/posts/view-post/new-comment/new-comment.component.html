@@ -1,0 +1,48 @@
+<p-button
+  (click)="showDialog()"
+  icon="pi pi-plus"
+  label="Nuevo Comentario"
+></p-button>
+<p-dialog
+  header="Nuevo Comentario"
+  [(visible)]="visible"
+  [style]="{ maxWidth: '50vw' }"
+>
+  <form
+    [formGroup]="postForm"
+    (ngSubmit)="submitForm()"
+    class="p-fluid flex flex-column gap-2"
+  >
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-user"></i>
+      </span>
+      <input pInputText placeholder="Nombre" formControlName="name" />
+    </div>
+    <div class="p-inputgroup">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-envelope"></i>
+      </span>
+      <input pInputText placeholder="Email" formControlName="email" />
+    </div>
+    <div class="p-inputgroup">
+      <textarea
+        id="float-input"
+        rows="5"
+        cols="30"
+        pInputTextarea
+        formControlName="body"
+        placeholder="Cuerpo del Posteo"
+      ></textarea>
+    </div>
+
+    <div class="p-field submit">
+      <button
+        pButton
+        type="submit"
+        label="Crear Posteo"
+        [disabled]="postForm.invalid"
+      ></button>
+    </div>
+  </form>
+</p-dialog>

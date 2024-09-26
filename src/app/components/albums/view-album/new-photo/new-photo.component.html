@@ -1,0 +1,32 @@
+<div class="button-wrapper flex justify-content-center">
+  <p-button
+    (click)="showDialog()"
+    icon="pi pi-plus"
+    label="Agregar Nueva Foto"
+  ></p-button>
+  <p-dialog header="Nueva Foto" [(visible)]="visible" styleClass="md:w-6 w-11">
+    <form
+      [formGroup]="postForm"
+      (ngSubmit)="submitForm()"
+      class="p-fluid flex flex-column gap-2"
+    >
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon">
+          <i class="pi pi-book"></i>
+        </span>
+        <input pInputText placeholder="Título" formControlName="title" />
+      </div>
+      <div class="p-inputgroup flex justify-content-center">
+        <p-fileUpload mode="basic" chooseLabel="Subir Foto"></p-fileUpload>
+      </div>
+      <div class="p-field submit">
+        <button
+          pButton
+          type="submit"
+          label="Crear Posteo"
+          [disabled]="postForm.invalid"
+        ></button>
+      </div>
+    </form>
+  </p-dialog>
+</div>

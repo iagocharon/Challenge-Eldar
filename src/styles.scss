@@ -1,1 +1,64 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: #b19df7;
+  --primary-color-semi: rgba(177, 157, 247, 0.16);
+  --border-radius: 6px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+// Menubar separation {
+.p-menubar-root-list {
+  gap: 10px;
+}
+// Menu Link Active (PrimeNg)
+.p-menuitem-link {
+  transition: all 0.3s ease-in-out;
+  border-radius: var(--border-radius);
+}
+.p-menuitem-link-active {
+  font-weight: 600;
+  background: var(--primary-color-semi);
+  border-color: var(--primary-color-semi);
+  color: var(--primary-color);
+  .p-menuitem-icon {
+    color: var(--primary-color);
+  }
+}
+
+// Autocomplete Icon
+i {
+  z-index: 1;
+}
+.p-autocomplete .p-inputtext {
+  padding-left: 40px;
+}

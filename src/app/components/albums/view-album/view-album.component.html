@@ -1,0 +1,34 @@
+<div class="button-wrapper flex justify-content-center">
+  <p-button (click)="showDialog()" icon="pi pi-fw pi-eye"></p-button>
+  <p-dialog
+    header="{{ album.title }}"
+    [(visible)]="visible"
+    class="overflow-auto"
+    styleClass="md:w-4 w-11"
+  >
+    <div class="dialog-wrapper flex flex-column gap-2">
+      <p-galleria
+        [value]="photos"
+        [containerStyle]="{ 'max-width': '640px' }"
+        [numVisible]="mobile ? 2 : 3"
+      >
+        <ng-template pTemplate="item" let-item>
+          <img [src]="item.url" style="width: 100%; display: block" />
+        </ng-template>
+        <ng-template pTemplate="thumbnail" let-item>
+          <div class="grid grid-nogutter justify-content-center">
+            <img [src]="item.thumbnailUrl" style="display: block" />
+          </div>
+        </ng-template>
+        <ng-template pTemplate="caption" let-item>
+          <h4 class="mb-2">
+            {{ item.title }}
+          </h4>
+        </ng-template>
+      </p-galleria>
+      <div class="flex justify-content-center" *ngIf="isAdmin">
+        <app-new-photo></app-new-photo>
+      </div>
+    </div>
+  </p-dialog>
+</div>

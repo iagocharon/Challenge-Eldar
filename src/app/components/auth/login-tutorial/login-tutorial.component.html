@@ -1,0 +1,31 @@
+<p-button
+  (click)="showDialog()"
+  label="¿Cómo ingresar?"
+  [link]="true"
+></p-button>
+<p-dialog
+  header="Aplicación de demostración"
+  [(visible)]="visible"
+  styleClass="md:w-6 w-11"
+>
+  <p>
+    Esta aplicación está hecha a modo de demostración y para poder probarla, es
+    necesario loguearse con las siguientes credenciales:
+  </p>
+  <ul>
+    <li>
+      <strong>Administrador</strong>:<br />
+      Usuario: <code>admin</code><br />
+      Contraseña: <code>adminpassword</code>
+    </li>
+    <li>
+      <strong>Usuario regular</strong>:<br />
+      Usuario: <code>user</code><br />
+      Contraseña: <code>userpassword</code>
+    </li>
+  </ul>
+
+  <p>
+    Utilizá las credenciales correspondientes para ingresar con el rol deseado.
+  </p>
+</p-dialog>

@@ -1,0 +1,37 @@
+<p-table
+  [value]="albums"
+  [paginator]="true"
+  [rows]="mobile ? 3 : 5"
+  [tableStyle]="{ 'margin-bottom': '20px' }"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} álbums"
+  [showFirstLastIcon]="!mobile"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Título</th>
+      <th class="actions">Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-album>
+    <tr>
+      <td class="title">{{ album.title }}</td>
+      <td
+        class="text-xl flex gap-2 justify-content-center md:flex-row flex-column"
+      >
+        <app-view-album [album]="album"></app-view-album>
+        <app-edit-album
+          [album]="album"
+          [users]="users"
+          *ngIf="isAdmin"
+        ></app-edit-album>
+        <div class="button-wrapper flex justify-content-center" *ngIf="isAdmin">
+          <p-button
+            (click)="deleteAlbum($event, album.id)"
+            icon="pi pi-fw pi-trash"
+          ></p-button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

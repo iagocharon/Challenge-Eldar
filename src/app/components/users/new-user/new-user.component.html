@@ -1,0 +1,111 @@
+<p-button (click)="showDialog()" icon="pi pi-plus"></p-button>
+<p-dialog header="Nuevo Usuario" [(visible)]="visible" styleClass="md:w-6 w-11">
+  <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="grid">
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-user"></i>
+      </span>
+      <input pInputText placeholder="Nombre" formControlName="name" />
+    </div>
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-user-edit"></i>
+      </span>
+      <input
+        pInputText
+        placeholder="Nombre de Usuario"
+        formControlName="username"
+      />
+    </div>
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-envelope"></i>
+      </span>
+      <input pInputText placeholder="Email" formControlName="email" />
+    </div>
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-phone"></i>
+      </span>
+      <input pInputText placeholder="Teléfono" formControlName="phone" />
+    </div>
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-globe"></i>
+      </span>
+      <input pInputText placeholder="Sitio Web" formControlName="website" />
+    </div>
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-building"></i>
+      </span>
+      <input
+        pInputText
+        placeholder="Nombre de Compañía"
+        formControlName="companyName"
+      />
+    </div>
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-tag"></i>
+      </span>
+      <input
+        pInputText
+        placeholder="Frase de Captura"
+        formControlName="catchPhrase"
+      />
+    </div>
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-tags"></i>
+      </span>
+      <input pInputText placeholder="BS" formControlName="bs" />
+    </div>
+    <p-divider class="col-12"></p-divider>
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-map-marker"></i>
+      </span>
+      <input pInputText placeholder="Calle" formControlName="street" />
+    </div>
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-map-marker"></i>
+      </span>
+      <input pInputText placeholder="Suite" formControlName="suite" />
+    </div>
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-map"></i>
+      </span>
+      <input pInputText placeholder="Ciudad" formControlName="city" />
+    </div>
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-envelope"></i>
+      </span>
+      <input pInputText placeholder="Código Postal" formControlName="zipcode" />
+    </div>
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-globe"></i>
+      </span>
+      <input pInputText placeholder="Latitud" formControlName="lat" />
+    </div>
+    <div class="p-inputgroup md:col-6 col-12">
+      <span class="p-inputgroup-addon">
+        <i class="pi pi-globe"></i>
+      </span>
+      <input pInputText placeholder="Longitud" formControlName="lng" />
+    </div>
+
+    <div class="p-field mt-5">
+      <button
+        pButton
+        type="submit"
+        label="Crear Usuario"
+        [disabled]="userForm.invalid"
+      ></button>
+    </div>
+  </form>
+</p-dialog>

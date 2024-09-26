@@ -1,0 +1,81 @@
+<div class="container" *ngIf="users && albums">
+  <div class="flex justify-content-between mb-2 gap-2 md:flex-row flex-column">
+    <div class="flex gap-2">
+      <h2 class="text-4xl">Álbumes</h2>
+      <app-new-album [users]="users" *ngIf="isAdmin"></app-new-album>
+    </div>
+    <div class="flex gap-2 flex-wrap md:flex-nowrap">
+      <span class="p-input-icon-left w-full" styleClass="w-full">
+        <i class="pi pi-search"></i>
+        <p-autoComplete
+          styleClass="w-full"
+          class="w-full"
+          [(ngModel)]="searchQuery"
+          [suggestions]="filteredSuggestions"
+          (completeMethod)="searchAlbumSuggestions($event)"
+          field="title"
+          placeholder="Buscar por título"
+          (onSelect)="filterAlbumsBySelected($event)"
+        ></p-autoComplete>
+      </span>
+      <p-dropdown
+        [options]="users"
+        optionLabel="name"
+        [(ngModel)]="selectedUser"
+        placeholder="Filtrar por usuario"
+        (onChange)="filterAlbumsByUser()"
+      ></p-dropdown>
+      <p-button (click)="cleanFilters()" icon="pi pi-eraser"></p-button>
+    </div>
+  </div>
+  <p-table
+    [value]="filteredAlbums"
+    [paginator]="true"
+    [rows]="5"
+    [tableStyle]="{ 'margin-bottom': '20px' }"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} álbums"
+    [showFirstLastIcon]="!mobile"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th class="text-xl" *ngIf="!mobile">ID</th>
+        <th class="text-xl">Título</th>
+        <th class="text-xl" *ngIf="!mobile">Autor</th>
+        <th
+          class="text-xl flex gap-2 justify-content-center align-items-center"
+        >
+          Acciones
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-album>
+      <tr>
+        <td class="" *ngIf="!mobile">{{ album.id }}</td>
+        <td class="capitalize font-medium">{{ album.title }}</td>
+        <td class="capitalize font-medium" *ngIf="!mobile">
+          {{ getUserNameById(album.userId) }}
+        </td>
+        <td
+          class="text-xl flex gap-2 justify-content-center md:flex-row flex-column"
+        >
+          <app-view-album [album]="album"></app-view-album>
+          <app-edit-album
+            [album]="album"
+            [users]="users"
+            *ngIf="isAdmin"
+          ></app-edit-album>
+          <div
+            class="button-wrapper flex justify-content-center"
+            *ngIf="isAdmin"
+          >
+            <p-button
+              (click)="deleteAlbum($event, album.id)"
+              icon="pi pi-fw pi-trash"
+            ></p-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

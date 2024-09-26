@@ -1,0 +1,60 @@
+<div class="grid">
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">Nombre</label>
+    <span class="font-bold mb-1">{{ user.name }}</span>
+  </div>
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">Nombre de Usuario</label>
+    <span class="font-bold mb-1">{{ user.username }}</span>
+  </div>
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">Email</label>
+    <span class="font-bold mb-1">{{ user.email }}</span>
+  </div>
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">Teléfono</label>
+    <span class="font-bold mb-1">{{ user.phone }}</span>
+  </div>
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">Sitio Web</label>
+    <span class="font-bold mb-1">{{ user.website }}</span>
+  </div>
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">Nombre de Compañía</label>
+    <span class="font-bold mb-1">{{ user.company.name }}</span>
+  </div>
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">Slogan de compañia</label>
+    <span class="font-bold mb-1">{{ user.company.catchPhrase }}</span>
+  </div>
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">BS</label>
+    <span class="font-bold mb-1">{{ user.company.bs }}</span>
+  </div>
+
+  <p-divider class="col-12"></p-divider>
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">Calle</label>
+    <span class="font-bold mb-1">{{ user.address.street }}</span>
+  </div>
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">Suite</label>
+    <span class="font-bold mb-1">{{ user.address.suite }}</span>
+  </div>
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">Ciudad</label>
+    <span class="font-bold mb-1">{{ user.address.city }}</span>
+  </div>
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">Código Postal</label>
+    <span class="font-bold mb-1">{{ user.address.zipcode }}</span>
+  </div>
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">Latitud</label>
+    <span class="font-bold mb-1">{{ user.address.geo.lat }}</span>
+  </div>
+  <div class="md:col-6 col-12 flex flex-column">
+    <label class="text-xs">Longitud</label>
+    <span class="font-bold mb-1">{{ user.address.geo.lng }}</span>
+  </div>
+</div>
