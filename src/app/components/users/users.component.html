@@ -5,7 +5,8 @@
       <app-new-user *ngIf="isAdmin"></app-new-user>
     </div>
     <div class="flex gap-2 flex-wrap md:flex-nowrap">
-      <span class="p-input-icon-left w-full" styleClass="w-full">
+      <!-- Barra de búsqueda por título con autocompletado -->
+      <span class="p-input-icon-left w-full search-full">
         <i class="pi pi-search"></i>
         <p-autoComplete
           styleClass="w-full"
@@ -18,6 +19,8 @@
           (onSelect)="filterUsersBySelected($event)"
         ></p-autoComplete>
       </span>
+
+      <!-- Botón para limpiar los filtros -->
       <p-button
         *ngIf="!mobile"
         (click)="cleanFilters()"
@@ -31,25 +34,38 @@
     [rows]="5"
     [tableStyle]="{ 'margin-bottom': '20px' }"
     [showCurrentPageReport]="true"
-    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} posteos"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} usuarios"
     [showFirstLastIcon]="!mobile"
   >
     <ng-template pTemplate="header">
       <tr>
+        <!-- Encabezado de la tabla -->
         <th class="text-xl" *ngIf="!mobile">ID</th>
-        <th class="text-xl" *ngIf="!mobile">Nombre</th>
-        <th class="text-xl">Usuario</th>
+        <th class="text-xl md:w-8" *ngIf="!mobile">Nombre</th>
+        <th class="text-xl md:w-4">Usuario</th>
         <th class="text-xl flex gap-2 justify-content-center">Acciones</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user>
       <tr>
+        <!-- Muestra el ID-->
         <td *ngIf="!mobile">{{ user.id }}</td>
+
+        <!-- Muestra el nombre-->
         <td class="capitalize font-medium" *ngIf="!mobile">{{ user.name }}</td>
+
+        <!-- Muestra el nombre de usuario -->
         <td>{{ user.username }}</td>
+
+        <!-- Muestra las acciones disponibles para cada usuario-->
         <td class="text-xl flex gap-2 justify-content-center">
+          <!-- Botón para abrir componente de ver usuarios-->
           <app-view-user [user]="user" [users]="users"></app-view-user>
+
+          <!-- Botón para abrir componente de editar usuarios-->
           <app-edit-user [user]="user" *ngIf="isAdmin"></app-edit-user>
+
+          <!-- Botón para eliminar usuarios-->
           <div *ngIf="isAdmin">
             <p-button
               (click)="deleteUser($event, user.id)"

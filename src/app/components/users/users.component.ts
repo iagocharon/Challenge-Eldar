@@ -74,6 +74,8 @@ export class UsersComponent implements OnInit {
       target: event.target as EventTarget,
       message: `¿Estás seguro de que quieres borrar el usuario con ID ${id}?`,
       icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Sí',
+      rejectLabel: 'No',
       accept: () => {
         this.dataService.deleteUser(id).subscribe(
           (data) => {

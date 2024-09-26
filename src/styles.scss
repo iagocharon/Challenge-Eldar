@@ -62,3 +62,49 @@ i {
 .p-autocomplete .p-inputtext {
   padding-left: 40px;
 }
+
+// Searchbar full width mobile
+@media (max-width: 768px) {
+  .search-full {
+    width: 100% !important;
+    input {
+      width: 100% !important;
+    }
+  }
+  .drop-full {
+    width: 100% !important;
+    .p-dropdown {
+      width: 100% !important;
+    }
+  }
+}
+
+// Small buttons on mobile
+@media (max-width: 768px) {
+  .small-button {
+    .p-button.p-button-icon-only {
+      width: 3rem !important;
+      padding: 0.25rem 0 !important;
+    }
+  }
+}
+
+// Paginator Style Mobile
+@media (max-width: 768px) {
+  .p-paginator-current {
+    display: none !important;
+  }
+  .p-paginator-pages {
+    button {
+      font-size: 0.8rem !important;
+    }
+  }
+  .p-paginator .p-paginator-pages .p-paginator-page {
+    min-width: 2rem !important;
+  }
+}
+
+// Fileupload Style
+.p-fileupload-choose {
+  width: 100% !important;
+}

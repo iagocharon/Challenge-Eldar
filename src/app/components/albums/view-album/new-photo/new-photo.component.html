@@ -4,22 +4,38 @@
     icon="pi pi-plus"
     label="Agregar Nueva Foto"
   ></p-button>
-  <p-dialog header="Nueva Foto" [(visible)]="visible" styleClass="md:w-6 w-11">
+  <p-dialog
+    [draggable]="false"
+    [modal]="true"
+    header="Nueva Foto"
+    [(visible)]="visible"
+    styleClass="md:w-6 w-11"
+    style="min-width: 350px"
+  >
     <form
       [formGroup]="postForm"
       (ngSubmit)="submitForm()"
       class="p-fluid flex flex-column gap-2"
     >
+      <!-- Campo para el título de la foto -->
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon">
           <i class="pi pi-book"></i>
         </span>
         <input pInputText placeholder="Título" formControlName="title" />
       </div>
-      <div class="p-inputgroup flex justify-content-center">
-        <p-fileUpload mode="basic" chooseLabel="Subir Foto"></p-fileUpload>
+
+      <!-- Campo para subir la foto -->
+      <div class="p-inputgroup flex justify-content-center w-full">
+        <p-fileUpload
+          mode="basic"
+          chooseLabel="Subir Foto"
+          class="w-full"
+        ></p-fileUpload>
       </div>
-      <div class="p-field submit">
+
+      <!-- Botón para crear el posteo -->
+      <div class="p-field submit mt-2">
         <button
           pButton
           type="submit"

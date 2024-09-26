@@ -2,28 +2,42 @@
   <p-button
     (click)="showDialog()"
     icon="pi pi-fw pi-eye"
-    styleClass="p-button-sn"
+    class="small-button"
   ></p-button>
   <p-dialog
+    [draggable]="false"
+    [modal]="true"
     styleClass="md:w-6 w-11"
     header="{{ post.title }}"
     [(visible)]="visible"
   >
+    <!-- Cuerpo del post -->
     <p class="mb-2">{{ post.body }}</p>
+
+    <!-- Autor del post, resaltado con cursiva -->
     <p class="text-right font-semibold">
       <em>{{ author }}</em>
     </p>
-    <h3 class="mt-8 mb-2">Comentarios</h3>
+
+    <!-- Título para la sección de comentarios -->
+    <h3 class="md:mt-8 mt-4 mb-2">Comentarios</h3>
+
+    <!-- Contenedor para iterar sobre los comentarios del post -->
     <ng-container *ngFor="let comment of comments">
       <div class="mb-2">
+        <!-- Nombre del comentarista y su email -->
         <p>
           <b>{{ comment.name }}</b> -
           <em class="text-xs">{{ comment.email }}</em>
         </p>
+        <!-- Cuerpo del comentario -->
         <p class="text-sm">{{ comment.body }}</p>
       </div>
+      <!-- Separador entre comentarios -->
       <p-divider></p-divider>
     </ng-container>
+
+    <!-- Componente para añadir un nuevo comentario al post -->
     <app-new-comment [postId]="post.id" [users]="users"></app-new-comment>
   </p-dialog>
 </div>

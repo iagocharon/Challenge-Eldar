@@ -1,5 +1,7 @@
 <p-button (click)="showDialog()" icon="pi pi-fw pi-eye"></p-button>
 <p-dialog
+  [draggable]="false"
+  [modal]="true"
   header="{{ user.name }}"
   [(visible)]="visible"
   styleClass="md:w-8 w-11"

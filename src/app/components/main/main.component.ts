@@ -13,6 +13,8 @@ export class MainComponent implements OnInit {
 
   sidebarVisible: boolean = false;
 
+  mobile: boolean = window.innerWidth < 768;
+
   constructor(
     private tokenService: TokenService,
     private confirmationService: ConfirmationService,

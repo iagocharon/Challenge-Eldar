@@ -1,12 +1,21 @@
 <p-button (click)="showDialog()" icon="pi pi-plus"></p-button>
-<p-dialog header="Nuevo Usuario" [(visible)]="visible" styleClass="md:w-6 w-11">
+<p-dialog
+  [draggable]="false"
+  [modal]="true"
+  header="Nuevo Usuario"
+  [(visible)]="visible"
+  styleClass="md:w-6 w-11"
+>
   <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="grid">
+    <!-- Campo para el nombre del usuario -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-user"></i>
       </span>
       <input pInputText placeholder="Nombre" formControlName="name" />
     </div>
+
+    <!-- Campo para el nombre de usuario -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-user-edit"></i>
@@ -17,24 +26,32 @@
         formControlName="username"
       />
     </div>
+
+    <!-- Campo para el email -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-envelope"></i>
       </span>
       <input pInputText placeholder="Email" formControlName="email" />
     </div>
+
+    <!-- Campo para el teléfono -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-phone"></i>
       </span>
       <input pInputText placeholder="Teléfono" formControlName="phone" />
     </div>
+
+    <!-- Campo para el sitio web -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-globe"></i>
       </span>
       <input pInputText placeholder="Sitio Web" formControlName="website" />
     </div>
+
+    <!-- Campo para el nombre de la compañía -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-building"></i>
@@ -45,6 +62,8 @@
         formControlName="companyName"
       />
     </div>
+
+    <!-- Campo para la frase de captura -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-tag"></i>
@@ -55,43 +74,58 @@
         formControlName="catchPhrase"
       />
     </div>
+
+    <!-- Campo para 'BS' -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-tags"></i>
       </span>
       <input pInputText placeholder="BS" formControlName="bs" />
     </div>
+
     <p-divider class="col-12"></p-divider>
+
+    <!-- Campo para la calle -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-map-marker"></i>
       </span>
       <input pInputText placeholder="Calle" formControlName="street" />
     </div>
+
+    <!-- Campo para la suite -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-map-marker"></i>
       </span>
       <input pInputText placeholder="Suite" formControlName="suite" />
     </div>
+
+    <!-- Campo para la ciudad -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-map"></i>
       </span>
       <input pInputText placeholder="Ciudad" formControlName="city" />
     </div>
+
+    <!-- Campo para el código postal -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-envelope"></i>
       </span>
       <input pInputText placeholder="Código Postal" formControlName="zipcode" />
     </div>
+
+    <!-- Campo para la latitud -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-globe"></i>
       </span>
       <input pInputText placeholder="Latitud" formControlName="lat" />
     </div>
+
+    <!-- Campo para la longitud -->
     <div class="p-inputgroup md:col-6 col-12">
       <span class="p-inputgroup-addon">
         <i class="pi pi-globe"></i>
@@ -99,6 +133,7 @@
       <input pInputText placeholder="Longitud" formControlName="lng" />
     </div>
 
+    <!-- Botón submit -->
     <div class="p-field mt-5">
       <button
         pButton

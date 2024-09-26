@@ -1,10 +1,13 @@
-<div class="container md:px-5 p-3">
+<div class="container px-5 py-3">
   <div class="main-wrapper">
     <div class="menu flex justify-content-between">
+      <!-- Logo de la aplicación -->
       <div class="logo">
         <img height="50px" src="../../../assets/logo.png" alt="" />
       </div>
+      <!-- Menú principal de navegación -->
       <p-menubar class="hidden md:block" [model]="mainMenu"></p-menubar>
+      <!-- Botón para cerrar sesión -->
       <div class="hidden md:block">
         <p-button
           (click)="confirm($event)"
@@ -12,15 +15,21 @@
           label="Cerrar Sesión"
         ></p-button>
       </div>
-      <p-sidebar [(visible)]="sidebarVisible" position="right">
-        <div
-          class="sidebar-wrapper flex h-full flex-column justify-content-between"
-        >
+      <!-- Barra lateral que contiene el menú secundario -->
+      <p-sidebar [(visible)]="sidebarVisible" position="right" *ngIf="mobile">
+        <!-- Título del panel de la barra lateral -->
+        <ng-template pTemplate="header"><h2>Menú Principal</h2></ng-template>
+
+        <!-- Menú en panel de la barra lateral -->
+        <ng-template pTemplate="content">
           <p-panelMenu
             [model]="mainMenu"
             (click)="toggleSidebar()"
           ></p-panelMenu>
-          <div class="w-full mt-5">
+        </ng-template>
+        <!-- Botón para cerrar sesión en la barra lateral -->
+        <ng-template pTemplate="footer">
+          <div class="w-full">
             <p-button
               styleClass="w-full"
               (click)="confirm($event)"
@@ -28,15 +37,13 @@
               label="Cerrar Sesión"
             ></p-button>
           </div>
-        </div>
+        </ng-template>
       </p-sidebar>
-      <p-button
-        icon="pi pi-bars"
-        class="block md:hidden"
-        (click)="toggleSidebar()"
-      />
+      <!-- Botón para abrir la barra lateral en pantallas pequeñas -->
+      <p-button icon="pi pi-bars" *ngIf="mobile" (click)="toggleSidebar()" />
     </div>
-    <div class="content pt-8">
+    <!-- Área de contenido donde se cargan las rutas -->
+    <div class="content md:pt-5 pt-3">
       <router-outlet></router-outlet>
     </div>
   </div>

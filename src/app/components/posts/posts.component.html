@@ -5,7 +5,8 @@
       <app-new-post [users]="users" *ngIf="isAdmin"></app-new-post>
     </div>
     <div class="flex gap-2 flex-wrap md:flex-nowrap">
-      <span class="p-input-icon-left w-full" styleClass="w-full">
+      <!-- Barra de búsqueda por título con autocompletado -->
+      <span class="p-input-icon-left w-full search-full">
         <i class="pi pi-search"></i>
         <p-autoComplete
           styleClass="w-full"
@@ -18,14 +19,41 @@
           (onSelect)="filterPostsBySelected($event)"
         ></p-autoComplete>
       </span>
+
+      <!-- Dropdown para filtrar los posts por usuario -->
       <p-dropdown
         [options]="users"
         optionLabel="name"
         [(ngModel)]="selectedUser"
         placeholder="Filtrar por usuario"
         (onChange)="filterPostsByUser()"
+        class="md:block hidden"
       ></p-dropdown>
-      <p-button (click)="cleanFilters()" icon="pi pi-eraser"></p-button>
+      <!-- Botón para limpiar los filtros -->
+      <p-button
+        (click)="cleanFilters()"
+        icon="pi pi-eraser"
+        class="md:block hidden"
+      ></p-button>
+    </div>
+
+    <!-- Filtro Movil (Para mejor alineacion) -->
+    <div class="md:hidden block flex gap-2 w-full">
+      <!-- Dropdown para filtrar los posts por usuario -->
+      <p-dropdown
+        [options]="users"
+        optionLabel="name"
+        [(ngModel)]="selectedUser"
+        placeholder="Filtrar por usuario"
+        (onChange)="filterPostsByUser()"
+        class="w-full drop-full"
+      ></p-dropdown>
+      <!-- Botón para limpiar los filtros -->
+      <p-button
+        (click)="cleanFilters()"
+        icon="pi pi-eraser"
+        class=""
+      ></p-button>
     </div>
   </div>
   <p-table
@@ -36,12 +64,14 @@
     [showCurrentPageReport]="true"
     currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} posteos"
     [showFirstLastIcon]="!mobile"
+    paginatorStyleClass="paginator"
   >
     <ng-template pTemplate="header">
       <tr>
+        <!-- Encabezado de la tabla -->
         <th class="text-xl" *ngIf="!mobile">ID</th>
-        <th class="text-xl">Título</th>
-        <th class="text-xl" *ngIf="!mobile">Autor</th>
+        <th class="text-xl md:w-8">Título</th>
+        <th class="text-xl md:w-4" *ngIf="!mobile">Autor</th>
         <th
           class="text-xl flex gap-2 justify-content-center align-items-center"
         >
@@ -51,24 +81,36 @@
     </ng-template>
     <ng-template pTemplate="body" let-post>
       <tr>
+        <!-- Muestra el ID del post-->
         <td class="" *ngIf="!mobile">{{ post.id }}</td>
+
+        <!-- Muestra el título del post-->
         <td class="capitalize font-medium">{{ post.title }}</td>
+
+        <!-- Muestra el nombre del autor -->
         <td class="capitalize font-medium" *ngIf="!mobile">
           {{ getUserNameById(post.userId) }}
         </td>
+
+        <!-- Muestra las acciones disponibles para cada post-->
         <td
           class="text-xl flex gap-2 justify-content-center md:flex-row flex-column"
         >
+          <!-- Botón para abrir componente de ver post-->
           <app-view-post
             [post]="post"
             [author]="getUserNameById(post.userId)!"
             [users]="users"
           ></app-view-post>
+
+          <!-- Botón para abrir componente de editar post-->
           <app-edit-post
             [post]="post"
             [users]="users"
             *ngIf="isAdmin"
           ></app-edit-post>
+
+          <!-- Botón para eliminar post-->
           <div
             class="button-wrapper flex justify-content-center"
             *ngIf="isAdmin"
@@ -76,6 +118,7 @@
             <p-button
               (click)="deletePost($event, post.id)"
               icon="pi pi-fw pi-trash"
+              class="small-button"
             ></p-button>
           </div>
         </td>

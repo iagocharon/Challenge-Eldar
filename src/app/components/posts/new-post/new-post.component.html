@@ -1,16 +1,25 @@
 <p-button (click)="showDialog()" icon="pi pi-plus"></p-button>
-<p-dialog styleClass="md:w-6 w-11" header="Nuevo Posteo" [(visible)]="visible">
+<p-dialog
+  [draggable]="false"
+  [modal]="true"
+  styleClass="md:w-6 w-11"
+  header="Nuevo Posteo"
+  [(visible)]="visible"
+>
   <form
     [formGroup]="postForm"
     (ngSubmit)="submitForm()"
     class="p-fluid flex flex-column gap-2"
   >
+    <!-- Campo para el título del posteo -->
     <div class="p-inputgroup">
       <span class="p-inputgroup-addon">
         <i class="pi pi-book"></i>
       </span>
       <input pInputText placeholder="Título" formControlName="title" />
     </div>
+
+    <!-- Área de texto para el cuerpo del posteo -->
     <div class="p-inputgroup">
       <textarea
         id="float-input"
@@ -21,6 +30,8 @@
         placeholder="Cuerpo del Posteo"
       ></textarea>
     </div>
+
+    <!-- Dropdown para seleccionar el usuario asociado al posteo -->
     <p-dropdown
       appendTo="body"
       [options]="users"
@@ -28,6 +39,8 @@
       optionLabel="name"
       placeholder="Usuario"
     ></p-dropdown>
+
+    <!-- Botón para submit -->
     <div class="p-field submit">
       <button
         pButton

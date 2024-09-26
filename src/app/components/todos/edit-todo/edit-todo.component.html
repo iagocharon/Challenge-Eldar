@@ -1,6 +1,12 @@
 <div class="button-wrapper flex justify-content-center">
-  <p-button (click)="showDialog()" icon="pi pi-fw pi-file-edit"></p-button>
+  <p-button
+    (click)="showDialog()"
+    icon="pi pi-fw pi-file-edit"
+    class="small-button"
+  ></p-button>
   <p-dialog
+    [draggable]="false"
+    [modal]="true"
     header="Editar Posteo"
     [(visible)]="visible"
     styleClass="md:w-6 w-11"
@@ -10,18 +16,23 @@
       (ngSubmit)="submitForm()"
       class="p-fluid flex flex-column gap-2"
     >
+      <!-- Campo para el ID del to-do -->
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon">
           <i class="pi pi-hashtag"></i>
         </span>
         <input pInputText placeholder="ID" formControlName="id" />
       </div>
+
+      <!-- Campo para el título del to-do -->
       <div class="p-inputgroup">
         <span class="p-inputgroup-addon">
           <i class="pi pi-book"></i>
         </span>
         <input pInputText placeholder="Título" formControlName="title" />
       </div>
+
+      <!-- Dropdown para seleccionar el usuario asociado al to-do -->
       <p-dropdown
         appendTo="body"
         [options]="users"

@@ -4,27 +4,35 @@
   label="Nuevo Comentario"
 ></p-button>
 <p-dialog
+  [draggable]="false"
+  [modal]="true"
+  [modal]="true"
   header="Nuevo Comentario"
   [(visible)]="visible"
-  [style]="{ maxWidth: '50vw' }"
+  styleClass="md:w-6 w-11"
 >
   <form
     [formGroup]="postForm"
     (ngSubmit)="submitForm()"
     class="p-fluid flex flex-column gap-2"
   >
+    <!-- Campo para el nombre del usuario -->
     <div class="p-inputgroup">
       <span class="p-inputgroup-addon">
         <i class="pi pi-user"></i>
       </span>
       <input pInputText placeholder="Nombre" formControlName="name" />
     </div>
+
+    <!-- Campo para el email del usuario -->
     <div class="p-inputgroup">
       <span class="p-inputgroup-addon">
         <i class="pi pi-envelope"></i>
       </span>
       <input pInputText placeholder="Email" formControlName="email" />
     </div>
+
+    <!-- Área de texto para el cuerpo del comentario -->
     <div class="p-inputgroup">
       <textarea
         id="float-input"
@@ -36,6 +44,7 @@
       ></textarea>
     </div>
 
+    <!-- Botón para submit -->
     <div class="p-field submit">
       <button
         pButton

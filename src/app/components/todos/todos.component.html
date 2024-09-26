@@ -5,7 +5,8 @@
       <app-new-todo [users]="users" *ngIf="isAdmin"></app-new-todo>
     </div>
     <div class="flex gap-2 flex-wrap md:flex-nowrap">
-      <span class="p-input-icon-left w-full" styleClass="w-full">
+      <!-- Barra de búsqueda por título con autocompletado -->
+      <span class="p-input-icon-left w-full search-full">
         <i class="pi pi-search"></i>
         <p-autoComplete
           styleClass="w-full"
@@ -18,14 +19,40 @@
           (onSelect)="filterTodosBySelected($event)"
         ></p-autoComplete>
       </span>
+      <!-- Dropdown para filtrar los posts por usuario -->
       <p-dropdown
         [options]="users"
         optionLabel="name"
         [(ngModel)]="selectedUser"
         placeholder="Filtrar por usuario"
         (onChange)="filterTodosByUser()"
+        class="md:block hidden"
       ></p-dropdown>
-      <p-button (click)="cleanFilters()" icon="pi pi-eraser"></p-button>
+      <!-- Botón para limpiar los filtros -->
+      <p-button
+        (click)="cleanFilters()"
+        icon="pi pi-eraser"
+        class="md:block hidden"
+      ></p-button>
+    </div>
+
+    <!-- Filtro Movil (Para mejor alineacion) -->
+    <div class="md:hidden block flex gap-2 w-full">
+      <!-- Dropdown para filtrar los posts por usuario -->
+      <p-dropdown
+        [options]="users"
+        optionLabel="name"
+        [(ngModel)]="selectedUser"
+        placeholder="Filtrar por usuario"
+        (onChange)="filterTodosByUser()"
+        class="w-full drop-full"
+      ></p-dropdown>
+      <!-- Botón para limpiar los filtros -->
+      <p-button
+        (click)="cleanFilters()"
+        icon="pi pi-eraser"
+        class=""
+      ></p-button>
     </div>
   </div>
   <p-table
@@ -39,9 +66,10 @@
   >
     <ng-template pTemplate="header">
       <tr>
+        <!-- Encabezado de la tabla -->
         <th class="text-xl" *ngIf="!mobile">ID</th>
-        <th class="text-xl">Título</th>
-        <th class="text-xl" *ngIf="!mobile">Autor</th>
+        <th class="text-xl md:w-8">Título</th>
+        <th class="text-xl md:w-4" *ngIf="!mobile">Autor</th>
         <th
           class="text-xl flex gap-2 justify-content-center align-items-center"
           *ngIf="isAdmin"
@@ -52,28 +80,41 @@
     </ng-template>
     <ng-template pTemplate="body" let-todo>
       <tr>
+        <!-- Muestra el ID del to-do-->
         <td class="" *ngIf="!mobile">{{ todo.id }}</td>
+
+        <!-- Muestra el estado del to-do-->
         <td class="capitalize font-medium">
-          <p-checkbox
-            [disabled]="!isAdmin"
-            [(ngModel)]="todo.completed"
-            [binary]="true"
-            inputId="binary"
-            class="mr-2"
-            (onChange)="onChange(todo)"
-          ></p-checkbox
-          >{{ todo.title }}
+          <div class="flex">
+            <p-checkbox
+              [disabled]="!isAdmin"
+              [(ngModel)]="todo.completed"
+              [binary]="true"
+              inputId="binary"
+              class="mr-2"
+              (onChange)="onChange(todo)"
+            ></p-checkbox
+            >{{ todo.title }}
+          </div>
         </td>
+
+        <!-- Muestra el nombre del autor -->
         <td class="capitalize font-medium" *ngIf="!mobile">
           {{ getUserNameById(todo.userId) }}
         </td>
+
+        <!-- Muestra las acciones disponibles para cada to-do-->
         <td
           class="text-xl flex gap-2 justify-content-center md:flex-row flex-column"
           *ngIf="isAdmin"
         >
+          <!-- Botón para abrir componente de editar to-do-->
           <app-edit-todo [todo]="todo" [users]="users"></app-edit-todo>
+
+          <!-- Botón para eliminar to-do-->
           <div class="button-wrapper flex justify-content-center">
             <p-button
+              class="small-button"
               (click)="deleteTodo($event, todo.id)"
               icon="pi pi-fw pi-trash"
             ></p-button>

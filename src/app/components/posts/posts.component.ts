@@ -96,6 +96,8 @@ export class PostsComponent implements OnInit {
       target: event.target as EventTarget,
       message: `¿Estás seguro de que quieres borrar el posteo con ID ${id}?`,
       icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Sí',
+      rejectLabel: 'No',
       accept: () => {
         this.dataService.deletePost(id).subscribe(
           (data) => {

@@ -1,31 +1,46 @@
 <div class="button-wrapper flex justify-content-center">
-  <p-button (click)="showDialog()" icon="pi pi-fw pi-eye"></p-button>
+  <p-button
+    (click)="showDialog()"
+    icon="pi pi-fw pi-eye"
+    class="small-button"
+    class="small-button"
+  ></p-button>
   <p-dialog
+    [draggable]="false"
+    [modal]="true"
     header="{{ album.title }}"
     [(visible)]="visible"
     class="overflow-auto"
     styleClass="md:w-4 w-11"
   >
     <div class="dialog-wrapper flex flex-column gap-2">
+      <!-- Galería de fotos del álbum -->
       <p-galleria
         [value]="photos"
         [containerStyle]="{ 'max-width': '640px' }"
         [numVisible]="mobile ? 2 : 3"
       >
+        <!-- Plantilla para mostrar cada imagen en grande -->
         <ng-template pTemplate="item" let-item>
           <img [src]="item.url" style="width: 100%; display: block" />
         </ng-template>
+
+        <!-- Plantilla para mostrar miniaturas de las imágenes -->
         <ng-template pTemplate="thumbnail" let-item>
           <div class="grid grid-nogutter justify-content-center">
             <img [src]="item.thumbnailUrl" style="display: block" />
           </div>
         </ng-template>
+
+        <!-- Plantilla para mostrar el título/caption de la imagen -->
         <ng-template pTemplate="caption" let-item>
           <h4 class="mb-2">
             {{ item.title }}
           </h4>
         </ng-template>
       </p-galleria>
+
+      <!-- Botón para agregar una nueva foto -->
       <div class="flex justify-content-center" *ngIf="isAdmin">
         <app-new-photo></app-new-photo>
       </div>
