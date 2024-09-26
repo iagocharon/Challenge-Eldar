@@ -58,7 +58,7 @@ Para instalar y ejecutar esta aplicación web localmente, sigue los siguientes p
  1. ### Clonar el repositorio:
 ```bash
 https://github.com/iagocharon/Challenge-Eldar.git
-cd challenge-eldar
+cd Challenge-Eldar
  ```
 
 2. ### Instalar Dependencias:
